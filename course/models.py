@@ -9,9 +9,8 @@ class Course(models.Model):
         ACTIVE   = "AC", "ACTIVE"
         INACTIVE = "IN", "INACTIVE"
 
-    name         = models.CharField(max)
+    name         = models.CharField(max_length=60, validators=[MinLengthValidator(2)])
     max_capacity = models.IntegerField(validators=[MinValueValidator(1)]) 
-    code         = models.CharField()
+    code         = models.CharField(max_length=30, validators=[MinLengthValidator(5)], unique=True)
     state        = models.CharField(max_length=2, choices=Status, default=Status.DRAFT)
-
 
