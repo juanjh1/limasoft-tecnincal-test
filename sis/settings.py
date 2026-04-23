@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     "home",
     "course",
     #----#_---#-----#---
+    "jazzmin",
+    #-----#---------#----- 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -117,7 +119,17 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+JAZZMIN_SETTINGS = {
+    "site_title": "Sis",
+    "site_header": "Admin Panel",
+    "welcome_sign": "Bienvenido al sistema",
+}
+JAZZMIN_UI_TWEAKS = {
+    "navbar": "navbar-dark navbar-primary",
+    "brand_colour": "navbar-primary",
+    "sidebar": "sidebar-dark-primary",
+    "accent": "accent-primary",
+}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
@@ -127,3 +139,5 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+
