@@ -12,10 +12,16 @@
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
           crossorigin="anonymous"
     >
+    
+    <link 
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" 
+    rel="stylesheet">
+    
     <link
       href="{% static 'css/base.css'%}"
       rel="stylesheet"
-    > 
+    >
+
     {%block style%}
 
     {% endblock %}
@@ -30,7 +36,7 @@
     </nav>
 
     <main id="main-content"> 
-      {% block contet%}
+      {% block content%}
 
       {% endblock %}
     </main>
