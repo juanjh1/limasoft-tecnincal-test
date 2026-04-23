@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block style%}
+  <link src="{% static 'css/home.css'%}">
+   <style> 
+    #main-content {
+      background-image: url("{% static 'image/home-img.jpg'%}");
+      background-size:cover;
+      height: 100vh;  
+      width: 100%;
+      overflow-y: none;
+    }
+   </style>
+{% endblock %}
+
+
+{% block content %} 
+
+
+{% endblock %}
