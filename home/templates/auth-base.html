@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{%block style%}
+
+  <link href="{% static 'css/admin.css'%}" rel="stylesheet">
+   <style> 
+    #main-content {
+      background-image: url("{% static 'image/home-img.jpg'%}");
+      background-size:cover;
+      height: 100vh;  
+      width: 100%;
+      overflow-y: none;
+      display:flex;
+    }
+   </style>
+
+{% endblock %}
+{% block content %}
+
+  <div class="form-container">
+    <h1 class="form-container-title">{% block form-title %} {% endblock %}</h1>
+
+    <form method="post">
+      
+      {% csrf_token %}
+      {% block form %}
+
+      {% endblock %}
+      <button class="btn  c-btn"  type="submit">Submit</button>
+      
+      <a href="{%url 'home'%}">Go back</a>
+    </form>
+
+  </div>
+{% endblock %}

@@ -22,8 +22,23 @@
   role="group" 
   aria-label="Basic outlined example"
  >
-  <button type="button" class="btn btn-outline-primary">Left</button>
-  <button type="button" class="btn btn-outline-primary">Middle</button>
-  <button type="button" class="btn btn-outline-primary">Right</button>
+  <button 
+    type="button" 
+    class="btn  c-btn"
+  >
+  Left
+  </button>
+  <button 
+    type="button" 
+    class="btn  c-btn"
+  >
+  Middle
+  </button>
+  <a
+    href="{% url 'admin:index'%}"
+    type="button" 
+    class="btn  c-btn"
+    > <img src="{%static 'image/admin_icon.svg'%}">  <span> Right <span>
+  </a>
 </div>
 {% endblock %}
