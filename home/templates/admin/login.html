@@ -1,47 +1,23 @@
 
-{% extends "base.html" %}
+{% extends "auth-base.html" %}
 
 {% load static %}
 
-{%block style%}
+{% block form-style%}
+{%endblock%}
 
-  <link href="{% static 'css/admin.css'%}" rel="stylesheet">
-   <style> 
-    #main-content {
-      background-image: url("{% static 'image/home-img.jpg'%}");
-      background-size:cover;
-      height: 100vh;  
-      width: 100%;
-      overflow-y: none;
-      display:flex;
-    }
-   </style>
 
-{% endblock %}
-{% block content %}
+{% block form-title %}Admin Login {% endblock %}
 
-  <div class="form-container">
-    <h1 class="form-container-title">Admin Login</h1>
+{% block form %}
+    <div class="form-group">
+      <input name="username" placeholder="Username">
+      {{ form.username.errors }}
+    </div>
 
-    <form method="post">
-      
-      {% csrf_token %}
-      
-      <div class="form-group">
-        <input name="username" placeholder="Username">
-        {{ form.username.errors }}
-      </div>
+    <div class="form-group">
+      <input name="password" type="password" placeholder="Password">
 
-      <div class="form-group">
-        <input name="password" type="password" placeholder="Password">
-
-        {{ form.password.errors }}
-      </div>
-      
-      <button class="btn  c-btn"  type="submit">Submit</button>
-      
-      <a > go back</a>
-    </form>
-
-  </div>
+      {{ form.password.errors }}
+    </div>
 {% endblock %}

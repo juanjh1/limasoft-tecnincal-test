@@ -6,7 +6,7 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     margin-left:auto;
     margin-right: auto;
-    height: 40%;
+    height: 35%;
     margin-top: 7%;
 }
 
@@ -60,4 +60,8 @@ input:focus {
 
 .c-btn:hover {
     background-color: #0056b3;
+}
+
+.form-container form a {
+  margin-left: 20px;
 }
