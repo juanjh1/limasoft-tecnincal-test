@@ -1,38 +1,28 @@
 {% extends "base.html" %}
 {% load static %}
 
-{%block style%}
-   <style> 
-    #main-content {
-      background-image: url("{% static 'image/home-img.jpg'%}");
-      background-size:cover;
-      height: 100vh;  
-      width: 100%;
-      overflow-y: none;
-      display:flex;
-    }
-   </style>
+{% block style %}
+
 {% endblock %}
 
-
-{% block content %} 
-<div 
-  class="btn-group custome-btn-group" 
-  role="group" 
-  aria-label="Basic outlined example"
- >
-  <a 
-    href="{%url 'login_user'%}"
-    type="button" 
-    class="btn  c-btn"
-  >
-  Middle
-  </a>
-  <a
-    href="{% url 'admin:index'%}"
-    type="button" 
-    class="btn  c-btn"
-    > <img src="{%static 'image/admin_icon.svg'%}">  <span> Right <span>
-  </a>
-</div>
+{% block content %}
+<section class="hero-section">
+    <img src="{% static 'image/home-img.jpg' %}" alt="Background" class="hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content py-5">
+        <div class="row align-items-center py-5">
+            <div class="col-lg-7 fade-in">
+                <h1 class="display-3 fw-bold mb-4 tracking-tight">Bienvenido al Sistema SIS</h1>
+                <p class="lead opacity-75 mb-5 pe-lg-5">
+                    Gestiona notas académicas, cursos y docentes en una plataforma moderna, segura y fácil de usar. Diseñada para potenciar el éxito académico.
+                </p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="{% url 'login_user' %}" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow-lg">
+                        <i data-lucide="log-in" class="me-2"></i> Iniciar Sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

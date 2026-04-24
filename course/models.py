@@ -18,20 +18,20 @@ class Course(models.Model):
     state        = models.CharField(max_length=2, choices=Status, default=Status.DRAFT)
 
 class ClasssSection(models.Model):
-    course_id  = models.OneToOneField(Course, on_delete=models.CASCADE, related_name="couser_section")
-    teacher_id = models.OneToOneField(Teacher, on_delete=models.CASCADE, related_name="teacher_section")
+    course  = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="couser_section")
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name="teacher_section")
 
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=['course_id', 'teacher_id'], 
+                fields=['course', 'teacher'], 
                 name='unique_course_teacher'
             )
         ]
 
 class Enrolled(models.Model): 
-    student_id       = models.OneToOneField(Student, on_delete=models.CASCADE, related_name="section_studen_enrolled")
-    class_section_id = models.OneToOneField(ClasssSection, on_delete=models.CASCADE, related_name="class_section_enrolled")
+    student       = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="section_studen_enrolled")
+    class_section = models.ForeignKey(ClasssSection, on_delete=models.CASCADE, related_name="class_section_enrolled")
     class Meta:
         constraints = [
             models.UniqueConstraint(
