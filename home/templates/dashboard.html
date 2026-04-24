@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block style%}
+  <link href="{% static 'css/home.css'%}" rel="stylesheet">
+   <style> 
+    #main-content {
+      height: 100vh;  
+      width: 100%;
+      overflow-y: none;
+      display:flex;
+    }
+   </style>
+{% endblock %}
+
+
+{% block content %} 
+  <h2> </h2>
+  <div class="card mb-3" style="max-width: 540px; max-height: 400px">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'img/course.jpg' %}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

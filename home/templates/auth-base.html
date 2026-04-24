@@ -23,7 +23,7 @@
   <div class="form-container">
     <h1 class="form-container-title">{% block form-title %} {% endblock %}</h1>
 
-    <form method="post">
+    <form method="post" {% block form-atr%} {%endblock%}>
       
       {% csrf_token %}
       {% block form %}

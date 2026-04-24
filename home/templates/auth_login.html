@@ -1,0 +1,24 @@
+{% extends "auth-base.html" %}
+
+{% load static %}
+
+{% block form-style%}
+{%endblock%}
+
+
+{% block form-title %}Student Login {% endblock %}
+
+
+{% block form-atr%} 
+  action="{%url 'login_user'%}"
+{%endblock%}
+
+{% block form %}
+    <div class="form-group">
+      <input name="username" placeholder="Username">
+    </div>
+
+    <div class="form-group">
+      <input name="password" type="password" placeholder="Password">
+    </div>
+{% endblock %} 

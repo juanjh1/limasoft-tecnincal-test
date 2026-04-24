@@ -2,7 +2,6 @@
 {% load static %}
 
 {%block style%}
-  <link href="{% static 'css/home.css'%}" rel="stylesheet">
    <style> 
     #main-content {
       background-image: url("{% static 'image/home-img.jpg'%}");
@@ -22,18 +21,13 @@
   role="group" 
   aria-label="Basic outlined example"
  >
-  <button 
-    type="button" 
-    class="btn  c-btn"
-  >
-  Left
-  </button>
-  <button 
+  <a 
+    href="{%url 'login_user'%}"
     type="button" 
     class="btn  c-btn"
   >
   Middle
-  </button>
+  </a>
   <a
     href="{% url 'admin:index'%}"
     type="button" 

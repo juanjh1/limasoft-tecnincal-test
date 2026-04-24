@@ -1,9 +1,55 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
-# Create your views here.
+from django.contrib import messages
+from django.contrib.auth import login
+from home.user_repositry import UserRepository
+from student.repository import StudentRepository
 
 def index (request: HttpRequest) -> HttpResponse:
     if request.method == "GET":
+        user = request.user 
+        if user.is_authenticated:
+            return redirect("dashboard")
         return render(request, "index.html")
 
     return render(request,"404.html")
+
+def login_user(request: HttpRequest)-> HttpResponse:
+    
+    if request.method == "GET":
+        user = request.user 
+        if user.is_authenticated:
+            return redirect("home")
+        return render(request, "auth_login.html")
+
+    if request.method == "POST":
+       username = request.POST.get("username", None)
+       password = request.POST.get("password", None)
+       ## for the next time just use autenticate this logic ist not reciclable 
+       if password is None or username is None or username == "" or password == "":
+            messages.error(request, "The password and username are required")
+            return redirect("login_user")
+        
+       user = UserRepository.get_user_by_username(str(username))
+       
+       if user is None:
+            messages.error(request, f"User {user} doesn't exist")
+            return redirect("login_user")
+       
+       if not UserRepository.validate_password(user, str(password)):
+            messages.error(request, "Incorrect password")
+            return redirect("login_user")
+       ## ---------------------------------------------
+       login(request, user)
+       
+       return redirect("login_user")
+    
+    return render(request, "404.html")
+
+
+def dashboard (request:  HttpRequest)-> HttpResponse:
+    if request.method == "GET":
+        return render(request, "dashboard.html")
+
+    return render(request, "404.html")
+
