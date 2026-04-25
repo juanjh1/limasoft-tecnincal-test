@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %} 
+<div class="bg-light min-vh-100 py-5">
+    {% if teacher %}
+        {% include 'dashboard_teacher_component.html' %} 
+    {% endif %}
+    
+    {% if student %}
+        {% include 'dashboard_student_component.html' %}
+    {% endif %}
+
+    {% if not teacher and not student %}
+    <div class="container text-center py-5">
+        <div class="premium-card p-5">
+            <i data-lucide="info" class="text-primary mb-3" style="width: 48px; height: 48px;"></i>
+            <h3>Bienvenido al Sistema</h3>
+            <p class="text-muted">Parece que aún no tienes un perfil asignado. Contacta con el administrador.</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
