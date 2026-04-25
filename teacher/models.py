@@ -1,6 +1,9 @@
 from django.core.validators import MaxValueValidator, MinLengthValidator, MinValueValidator
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ValidationError
+
+from home.utils import get_age
 
 class Teacher(models.Model):
     user             =  models.OneToOneField(User, on_delete=models.CASCADE, related_name="teacher_user")
@@ -8,4 +11,8 @@ class Teacher(models.Model):
     teacher_code     =  models.CharField(validators=[MinLengthValidator(3)], max_length=40)
     experience_years =  models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(40)]) 
     bio              =  models.CharField(max_length=255, blank=True)
-
+    
+    def clean (self):
+        
+        if get_age(self.birth_day) < 18:
+            raise  ValidationError("Shoul be older than 18 for be a teacher")

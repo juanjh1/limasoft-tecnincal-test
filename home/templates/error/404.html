@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<style>
+    .error-container {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px 20px;
+    }
+    .error-code {
+        font-size: 12rem;
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 0;
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0.2;
+        position: absolute;
+        z-index: -1;
+    }
+    .error-card {
+        max-width: 500px;
+        width: 100%;
+        background: white;
+        padding: 50px;
+        border-radius: 32px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+    .error-icon {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 24px;
+        margin: 0 auto 30px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-code">404</div>
+    <div class="error-card fade-in">
+        <div class="error-icon">
+            <i data-lucide="search-x" style="width: 40px; height: 40px;"></i>
+        </div>
+        <h1 class="fw-bold tracking-tight mb-3">Página no encontrada</h1>
+        <p class="text-muted mb-5">
+            Lo sentimos, no pudimos encontrar la página que buscabas en <br>
+            <code class="bg-light px-2 py-1 rounded text-primary small">{{ request.path }}</code>
+        </p>
+        <div class="d-grid">
+            <a href="{% url 'home' %}" class="btn btn-primary btn-lg rounded-pill shadow-sm py-3 fw-bold">
+                <i data-lucide="home" class="me-2" style="width: 18px;"></i> Volver al Inicio
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

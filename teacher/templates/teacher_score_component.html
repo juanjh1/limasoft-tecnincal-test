@@ -1,0 +1,58 @@
+<div class="container-fluid px-4">
+    <div class="premium-card overflow-hidden">
+        <div class="p-4 border-bottom bg-white d-flex align-items-center justify-content-between">
+            <div>
+                <h4 class="fw-bold mb-0">Scores</h4>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-success rounded-pill px-4 btn-sm">
+                    <i data-lucide="check-circle" class="me-1" style="width: 16px;"></i> Save
+                </button>
+            </div>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle mb-0 text-nowrap">
+                <thead class="bg-dark text-white text-center">
+                    <tr>
+                        <th class="ps-4 text-start py-3" style="min-width: 250px;">student</th>
+                        <th class="py-3" style="width: 100px;">Parcial 1</th>
+                        <th class="py-3" style="width: 100px;">Parcial 2</th>
+                        <th class="py-3" style="width: 100px;">Tareas</th>
+                        <th class="py-3" style="width: 100px;">Proyecto</th>
+                        <th class="py-3" style="width: 100px;">Examen Final</th>
+                        <th class="py-3 bg-primary" style="width: 120px;">Average</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in "12345" %}
+                    <tr class="text-center">
+                        <td class="ps-4 text-start">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 35px; height: 35px;">
+                                    <span class="small fw-bold text-primary">S{{ i }}</span>
+                                </div>
+                                <div>
+                                    <div class="fw-bold">Estudiante de Ejemplo {{ i }}</div>
+                                    <div class="text-muted" style="font-size: 10px;">ID: ENR-00{{ i }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><input type="text" class="form-control form-control-sm text-center border-0 bg-light" value="8.5"></td>
+                        <td><input type="text" class="form-control form-control-sm text-center border-0 bg-light" value="7.0"></td>
+                        <td><input type="text" class="form-control form-control-sm text-center border-0 bg-light" value="9.2"></td>
+                        <td><input type="text" class="form-control form-control-sm text-center border-0 bg-light" value="8.0"></td>
+                        <td><input type="text" class="form-control form-control-sm text-center border-0 bg-light" placeholder="-"></td>
+                        <td class="bg-primary bg-opacity-10 fw-bold text-primary">
+                            {% if i == "1" %}8.18{% elif i == "2" %}7.50{% else %}8.45{% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
