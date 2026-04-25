@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="bg-light min-vh-100 py-5">
+    <div class="container mb-5">
+        <div class="premium-card p-4 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="bg-primary bg-opacity-10 p-3 rounded-4 me-4">
+                    <i data-lucide="book-open" class="text-primary" style="width: 32px; height: 32px;"></i>
+                </div>
+                <div>
+                    <h1 class="h3 fw-bold mb-1">{{ section.course.name }}</h1>
+                    <p class="text-muted mb-0">
+                        <i data-lucide="user" class="me-1" style="width: 14px;"></i>
+                        Prof. {{ section.teacher.user.get_full_name }}
+                    </p>
+                </div>
+            </div>
+            <div class="text-end">
+                <span class="badge bg-dark rounded-pill px-3 py-2">{{ section.course.code }}</span>
+            </div>
+        </div>
+    </div>
+
+    {% if student %}
+    {% include 'student_score_component.html' %}
+    {% endif %}
+
+    {% if teacher %}
+        {% include 'teacher_score_component.html' %}
+    {% endif %}
+</div>
+{% endblock %}

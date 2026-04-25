@@ -14,7 +14,7 @@ def index (request: HttpRequest) -> HttpResponse:
             return redirect("dashboard")
         return render(request, "index.html")
 
-    return render(request,"404.html")
+    return render(request, "error/404.html")
 
 def login_user(request: HttpRequest)-> HttpResponse:
     
@@ -46,13 +46,12 @@ def login_user(request: HttpRequest)-> HttpResponse:
        
        return redirect("login_user")
     
-    return render(request, "404.html")
+    return render(request, "error/404.html")
 
 
 def dashboard (request:  HttpRequest)-> HttpResponse:
     if request.method == "GET":
         context = {}
-        
         user = request.user
         student = StudentRepository.is_student_by_id(user.id) 
         teacher = TeacherRepository.is_teacher_by_id(user.id)
@@ -60,12 +59,13 @@ def dashboard (request:  HttpRequest)-> HttpResponse:
         if student is not None:
             context["student"] = True
             enrolls_cntx = {}
-            enrolls = EnrollRepository.get_enrrollment_by_student_id(student.pk)
+            enrolls = EnrollRepository.get_enrollments_by_student_id(student.pk)
             for en in enrolls:
                 enrolls_cntx[f"f{en.pk}"] = {
-                    "name": en.class_section.course.name,
-                    "description": en.class_section.course.description,
-                    "sections": f"{en.class_sectioneacher.id}-{en.class_section.course.id}"
+                    "name"          : en.class_section.course.name,
+                    "description"   : en.class_section.course.description,
+                    "sections"      : f"{en.class_section.teacher.id}-{en.class_section.course.id}",
+                    "section_id"    : en.class_section.pk
                 }
             context["enrolls"] = enrolls
         if teacher is not None:
@@ -77,12 +77,19 @@ def dashboard (request:  HttpRequest)-> HttpResponse:
                      secctions[f"{cs.pk}"] = {
                         "name": cs.course.name,
                         "description": cs.course.description,
-                        "sections": f"{cs.teacher.id}-{cs.course.id}"
+                        "sections": f"{cs.teacher.id}-{cs.course.id}",
+                        "section_id"    : cs.pk
                      }
              
              context["sections"]= secctions
 
         return render(request, "dashboard.html", context=context)
 
-    return render(request, "404.html")
+    return render(request, "error/404.html")
+
+def custom_404(request, exception):
+    return render(request, "error/404.html", status=404)
+
+def custom_403(request, exception=None):
+    return render(request, "error/403.html", status=403)
 

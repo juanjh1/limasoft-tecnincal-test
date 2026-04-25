@@ -16,7 +16,7 @@
         font-weight: 900;
         line-height: 1;
         margin-bottom: 0;
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         opacity: 0.2;
@@ -48,19 +48,19 @@
 
 {% block content %}
 <div class="error-container">
-    <div class="error-code">404</div>
+    <div class="error-code">403</div>
     <div class="error-card fade-in">
         <div class="error-icon">
-            <i data-lucide="search-x" style="width: 40px; height: 40px;"></i>
+            <i data-lucide="shield-alert" style="width: 40px; height: 40px;"></i>
         </div>
-        <h1 class="fw-bold tracking-tight mb-3">Page Not Found</h1>
+        <h1 class="fw-bold tracking-tight mb-3">Access Denied</h1>
         <p class="text-muted mb-5">
-            Sorry, we couldn't find the page you were looking for at <br>
-            <code class="bg-light px-2 py-1 rounded text-primary small">{{ request.path }}</code>
+            Sorry, you do not have the necessary permissions to access this resource. <br>
+            <code class="bg-light px-2 py-1 rounded text-danger small">HTTP 403: Forbidden</code>
         </p>
         <div class="d-grid">
-            <a href="{% url 'home' %}" class="btn btn-primary btn-lg rounded-pill shadow-sm py-3 fw-bold">
-                <i data-lucide="home" class="me-2" style="width: 18px;"></i> Back to Home
+            <a href="{% url 'dashboard' %}" class="btn btn-danger btn-lg rounded-pill shadow-sm py-3 fw-bold">
+                <i data-lucide="arrow-left" class="me-2" style="width: 18px;"></i> Back to Dashboard
             </a>
         </div>
     </div>

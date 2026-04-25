@@ -8,17 +8,13 @@
 {% block content %}
 <section class="hero-section">
     <img src="{% static 'image/home-img.jpg' %}" alt="Background" class="hero-bg">
-    <div class="hero-overlay"></div>
     <div class="container hero-content py-5">
         <div class="row align-items-center py-5">
             <div class="col-lg-7 fade-in">
-                <h1 class="display-3 fw-bold mb-4 tracking-tight">Bienvenido al Sistema SIS</h1>
-                <p class="lead opacity-75 mb-5 pe-lg-5">
-                    Gestiona notas académicas, cursos y docentes en una plataforma moderna, segura y fácil de usar. Diseñada para potenciar el éxito académico.
-                </p>
+                <h1 class="display-3 fw-bold mb-4 tracking-tight">Welcome to sis</h1>
                 <div class="d-flex gap-3 flex-wrap">
                     <a href="{% url 'login_user' %}" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow-lg">
-                        <i data-lucide="log-in" class="me-2"></i> Iniciar Sesión
+                        <i data-lucide="log-in" class="me-2"></i> Log in
                     </a>
                 </div>
             </div>

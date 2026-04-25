@@ -23,5 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("home.urls")),
     path("student/", include("student.urls")),
-    path("teacher/", include("teacher.urls"))
+    path("teacher/", include("teacher.urls")),
+    path("score/", include("score.urls"))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
+
+handler404 = 'home.views.custom_404'
+handler403 = 'home.views.custom_403'

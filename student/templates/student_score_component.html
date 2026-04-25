@@ -1,0 +1,40 @@
+<div class="container py-4">
+    <div class="premium-card overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th class="ps-4 py-3 text-uppercase small fw-bold">Assessment</th>
+                        <th class="py-3 text-uppercase small fw-bold">Date</th>
+                        <th class="py-3 text-uppercase small fw-bold text-center">Score</th>
+                        <th class="py-3 text-uppercase small fw-bold ps-4">Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for score in scores %}
+                    <tr class="{% if score.value < 7 %}table-danger{% elif score.value < 8 %}table-warning{% elif score.value < 9 %}table-primary{% else %}table-success{% endif %}">
+                        <td class="ps-4 fw-semibold text-dark">{{ score.name }}</td>
+                        <td class="text-dark">{{ score.updated_at|date:"M d, Y" }}</td>
+                        <td class="text-center fw-bold text-dark">
+                            {{ score.value }}
+                        </td>
+                        <td class="text-dark small ps-4">
+                            {% if score.comments %}
+                                {{ score.comments|truncatechars:50 }}
+                            {% else %}
+                                <span class="fst-italic opacity-50">No comments</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center py-5 text-muted">
+                            No grades have been recorded for this course yet.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
