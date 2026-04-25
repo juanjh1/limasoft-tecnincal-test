@@ -35,8 +35,8 @@ class ClassSection(models.Model):
         return f"{self.course.name} - {self.teacher.user.get_full_name()}"
 
 class Enrolled(models.Model): 
-    student       = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="enrollments")
-    class_section = models.ForeignKey(ClassSection, on_delete=models.CASCADE, related_name="enrollments")
+    student       = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="student_enrollments")
+    class_section = models.ForeignKey(ClassSection, on_delete=models.CASCADE, related_name="section_enrollments")
     
     class Meta:
         constraints = [

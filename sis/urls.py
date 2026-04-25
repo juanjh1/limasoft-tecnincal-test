@@ -28,3 +28,4 @@ urlpatterns = [
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
 
 handler404 = 'home.views.custom_404'
+handler403 = 'home.views.custom_403'

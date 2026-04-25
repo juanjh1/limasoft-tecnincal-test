@@ -2,10 +2,7 @@
 
 <div class="container py-4">
     <div class="d-flex align-items-center mb-4">
-        <div class="feature-icon me-3" style="width: 48px; height: 48px; margin-bottom: 0; background: rgba(59, 130, 246, 0.1); color: #3b82f6;">
-            <i data-lucide="users"></i>
-        </div>
-        <h2 class="h3 mb-0 fw-bold tracking-tight">Mis Materias (Panel Estudiantil)</h2>
+       <h2 class="h3 mb-0 fw-bold tracking-tight">My Courses </h2>
     </div>
 
     <div class="row g-4">
@@ -22,9 +19,9 @@
                             <p class="text-muted small mb-4 flex-grow-1">{{ value.description|truncatechars:100 }}</p>
                             
                             <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="badge bg-light text-dark rounded-pill px-3">Estado: En Curso</span>
+                                <span class="badge bg-light text-dark rounded-pill px-3">Status: active</span>
                                 <a href="{% url 'show_score' id=value.section_id %}" class="btn btn-outline-primary btn-sm rounded-pill px-4">
-                                    Ver Mis Notas <i data-lucide="eye" class="ms-1" style="width: 14px;"></i>
+                                    Show my scores <i data-lucide="eye" class="ms-1" style="width: 14px;"></i>
                                 </a>
                             </div>
                         </div>
@@ -37,7 +34,7 @@
             <div class="opacity-50 mb-3">
                 <i data-lucide="book-x" style="width: 48px; height: 48px;"></i>
             </div>
-            <p class="lead text-muted">Aún no estás matriculado en ninguna materia.</p>
+            <p class="lead text-muted">You didn't have any course yet.</p>
         </div>
         {% endfor %}
     </div>

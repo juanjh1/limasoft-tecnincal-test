@@ -40,7 +40,6 @@ class EnrollRepository:
     def get_enrollments_by_student_id(student_id: int) -> QuerySet[Enrolled]:
         return Enrolled.objects.filter(student_id=student_id).select_related('class_section', 'class_section__course')
     
-        # Usamos 'scores' porque cambiamos a ForeignKey con ese related_name
         return Enrolled.objects.filter(student_id=student_id).select_related(
             'class_section__course'
         ).prefetch_related('scores')
@@ -65,3 +64,7 @@ class EnrollRepository:
             return Enrolled.objects.get(class_section=cs_id, student_id=student_id)
         except ObjectDoesNotExist:
             return None
+
+    @staticmethod
+    def get_score_for_enrollment_by_name(enrollment: Enrolled, name: str):
+        return enrollment.scores.filter(name=name).first()

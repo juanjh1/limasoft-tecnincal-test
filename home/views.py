@@ -90,3 +90,6 @@ def dashboard (request:  HttpRequest)-> HttpResponse:
 def custom_404(request, exception):
     return render(request, "error/404.html", status=404)
 
+def custom_403(request, exception=None):
+    return render(request, "error/403.html", status=403)
+
