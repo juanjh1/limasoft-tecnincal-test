@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.contrib import messages
 from django.contrib.auth import login
-from course.repository import ClassSectionRepository, CourseRepository
+from course.repository import ClassSectionRepository, EnrollRepository
 from home.user_repositry import UserRepository
 from student.repository import StudentRepository
 from teacher.repository import TeacherRepository
@@ -59,20 +59,28 @@ def dashboard (request:  HttpRequest)-> HttpResponse:
 
         if student is not None:
             context["student"] = True
+            enrolls_cntx = {}
+            enrolls = EnrollRepository.get_enrrollment_by_student_id(student.pk)
+            for en in enrolls:
+                enrolls_cntx[f"f{en.pk}"] = {
+                    "name": en.class_section.course.name,
+                    "description": en.class_section.course.description,
+                    "sections": f"{en.class_sectioneacher.id}-{en.class_section.course.id}"
+                }
+            context["enrolls"] = enrolls
         if teacher is not None:
              context["teacher"] = True
              secctions = {}
              class_section = ClassSectionRepository.get_class_sections_by_teacher_id(teacher.pk)
-             
              if class_section is not  None:
                  for cs in class_section:
-                     course = CourseRepository.get_course_by_id(cs.pk) 
                      secctions[f"{cs.pk}"] = {
-                        "name": course.name,
-                        "description": course.description,
-                        "secctions": f"{cs.teacher.id}{cs.course.id}"
+                        "name": cs.course.name,
+                        "description": cs.course.description,
+                        "sections": f"{cs.teacher.id}-{cs.course.id}"
                      }
-                     context["sections"]= secctions
+             
+             context["sections"]= secctions
 
         return render(request, "dashboard.html", context=context)
 
