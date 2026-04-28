@@ -28,19 +28,16 @@ def show_scores(request: HttpRequest, id:int) -> HttpResponse:
             context["teacher"] = True
             enrollments = cs_section.section_enrollments.all().select_related('student__user').prefetch_related('scores')
             
-            # 1. Obtener nombres únicos de evaluaciones (Columnas)
             assessment_names = list(Score.objects.filter(enrolled__class_section=cs_section) \
                                           .values_list('name', flat=True) \
                                           .distinct() \
                                           .order_by('name'))
             context["assessment_names"] = assessment_names
             
-            # 2. Construir la matriz de datos usando el Repositorio
             grade_matrix = []
             for enroll in enrollments:
                 student_scores = []
                 for name in assessment_names:
-                    # Usamos el método del repositorio como pediste
                     score = EnrollRepository.get_score_for_enrollment_by_name(enroll, name)
                     student_scores.append({
                         'name': name,
